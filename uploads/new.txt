@@ -1,0 +1,1 @@
+Variables step uses a shell command to load environment variables from the .env file. The set -a and set +a commands ensure that the variables are exported.
