@@ -1,0 +1,33 @@
+name: Process Uploaded File
+
+# Trigger the workflow when files under the "uploads" directory are pushed.
+on:
+  push:
+    paths:
+      - 'uploads/'
+
+jobs:
+  process_file:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Check out the repository so we can access the files.
+      - uses: actions/checkout@v3
+
+      # Set up Python.
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      # Install required Python packages.
+      - name: Install Dependencies
+        run: |
+          pip install openai fpdf
+
+      # Run the processing script.
+      # Make sure you have set your OpenAI API key in the repository secrets as OPENAI_API_KEY.
+      - name: Process Uploaded File
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: python process_file.py
