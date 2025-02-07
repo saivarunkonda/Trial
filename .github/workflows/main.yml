@@ -29,5 +29,5 @@ jobs:
       # Make sure you have set your OpenAI API key in the repository secrets as OPENAI_API_KEY.
       - name: Process Uploaded File
         env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python process_file.py
